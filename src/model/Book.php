@@ -15,7 +15,7 @@ namespace Itb\Model;
 class Book
 {
     /**
-     * isbn of book (unique primary KEY)
+     * id of book (unique primary KEY)
      *
      * example:
      * <code>
@@ -23,7 +23,7 @@ class Book
      * </code>
      * @var string
      */
-    private $isbn;
+    private $id;
 
     /**
      * title of book
@@ -78,11 +78,11 @@ class Book
      * <code>
      * $book = new Book(1234);
      * </code>
-     * @param string $isbn
+     * @param string $id
      */
-    function __construct($isbn)
+    function __construct($id)
     {
-        $this->isbn = $isbn;
+        $this->id = $id;
     }
 
     /**
@@ -91,13 +91,13 @@ class Book
      * example usage:
      *
      * <code>
-     * $isbn = $b->getIsbn();
+     * $id = $b->getId();
      * </code>
      * @return string
      */
-    public function getIsbn()
+    public function getId()
     {
-        return $this->isbn;
+        return $this->id;
     }
 
     /**

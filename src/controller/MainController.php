@@ -39,10 +39,10 @@ class MainController
 
 
     // action for route:    /show/
-    public function showMissingIsbnAction(Request $request, Application $app)
+    public function showMissingIdAction(Request $request, Application $app)
     {
         $argsArray = array(
-            'message' => 'you must provide an isbn for the show page (e.g. /show/123)'
+            'message' => 'you must provide an id for the show page (e.g. /show/123)'
         );
 
         // render (draw) template

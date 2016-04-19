@@ -18,7 +18,7 @@ class BookRepository
 {
     /**
      * an associative array, containing Book objects
-     * and indexed by the unique, primary key field 'isbn'
+     * and indexed by the unique, primary key field 'id'
      * @var array
      */
     private $books;
@@ -57,7 +57,7 @@ class BookRepository
     private function addBook(Book $book)
     {
         // get ID from book object
-        $id = $book->getIsbn();
+        $id = $book->getId();
 
         // add book object to array, with index of the ID
         $this->books[$id] = $book;
