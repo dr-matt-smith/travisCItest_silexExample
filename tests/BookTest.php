@@ -16,10 +16,11 @@ class BookTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($book);
     }
 
-    public function testGetIdAfterConstruction()
+    public function testGetIdAfterSetId()
     {
         // Arrange
-        $book = new Book(123);
+        $book = new Book();
+        $book->setId(123);
         $expectedResult = 123;
 
         // Act
