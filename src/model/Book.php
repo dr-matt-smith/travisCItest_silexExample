@@ -7,12 +7,13 @@
  */
 
 namespace Itb\Model;
+use Mattsmithdev\PdoCrud\DatabaseTable;
 
 /**
  * Class Book to represent book objects
  * @package Hdip
  */
-class Book
+class Book extends DatabaseTable
 {
     /**
      * id of book (unique primary KEY)
@@ -71,19 +72,13 @@ class Book
     private $numPagesIndex;
 
     /**
-     * create new book, with provided ISBN
-     *
-     * example usage:
-     *
-     * <code>
-     * $book = new Book(1234);
-     * </code>
      * @param string $id
      */
-    function __construct($id)
+    public function setId($id)
     {
         $this->id = $id;
     }
+
 
     /**
      * get the ISBN

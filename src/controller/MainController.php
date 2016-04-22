@@ -5,7 +5,7 @@ namespace Itb\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-use Itb\Model\BookRepository;
+use Itb\Model\Book;
 
 class MainController
 {
@@ -22,13 +22,11 @@ class MainController
     // action for route:    /list
     public function listAction(Request $request, Application $app)
     {
-        // get reference to our repository
-        $bookRepository = new BookRepository();
 
         // build args array
         // ------------
         $argsArray = array(
-            'books' => $bookRepository->getAllBooks()
+            'books' => Book::getAll()
         );
 
         // render (draw) template
@@ -54,11 +52,8 @@ class MainController
     // action for route:    /show/{id}
     public function showAction(Request $request, Application $app, $id)
     {
-        // get reference to our repository
-        $bookRepository = new BookRepository();
-
         // try to get book for this ID
-        $book = $bookRepository->getOneBook($id);
+        $book = Book::getOneById($id);
 
         // build args array
         // ------------
