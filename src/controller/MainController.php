@@ -5,10 +5,72 @@ namespace Itb\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-use Itb\Model\Book;
+use Itb\Model\Database;
+
 
 class MainController
 {
+    // action for route:    /sqlite
+    public function sqliteAction(Request $request, Application $app)
+    {
+
+        // default - error template
+        $templateName = 'error';
+        $argsArray = [
+          	'message' => 'there was a problem with PDO'
+        ];
+
+        //open the database
+//        $db = Database::getPDOConnection();
+
+        //------------
+        //------------
+        //
+        /*
+        $db = new \PDO('sqlite:dogsDb_PDO.sqlite');
+
+        //create the database
+        $db->exec("DROP TABLE IF EXISTS dogs");
+        $db->exec("CREATE TABLE dogs (id INTEGER PRIMARY KEY, breed TEXT, name TEXT, age INTEGER)");
+
+        //insert some data...
+        $db->exec("INSERT INTO dogs (breed, name, age) VALUES ('Labrador', 'Tank', 2);".
+        "INSERT INTO dogs (breed, name, age) VALUES ('Husky', 'Glacier', 7); " .
+        "INSERT INTO dogs (breed, name, age) VALUES ('Golden-Doodle', 'Ellie', 4);");
+        */
+        //------------
+        //------------
+        //
+        $db = $app['session']->get('db');
+        
+        $pdo = $db['pdo'];
+        var_dump($pdo);
+        die();
+        $connection = $pdo->getConnection();
+
+
+        //now output the data to a simple html table...
+        $dogs = [];
+        $result = $connection->query('SELECT * FROM dogs');
+        foreach($result as $row)
+        {
+            $dogs[] = $row;
+        }
+
+        $templateName = 'sqlite';
+
+        $argsArray = [
+            'dogs' => $dogs,
+        ];
+
+        // render (draw) template
+        // ------------
+
+        return $app['twig']->render($templateName . '.html.twig', $argsArray);
+
+    }
+
+
     // action for route:    /
     public function indexAction(Request $request, Application $app)
     {
@@ -26,7 +88,7 @@ class MainController
         // build args array
         // ------------
         $argsArray = array(
-            'books' => Book::getAll()
+            'books' => null,
         );
 
         // render (draw) template

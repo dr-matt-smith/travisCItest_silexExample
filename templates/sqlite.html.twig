@@ -1,0 +1,42 @@
+{#----------------#}
+{# templates/sqlite.html.twig #}
+{#----------------#}
+
+{% extends '_base.html.twig' %}
+
+{% block pageTitle %}list page{% endblock %}
+
+{% block main %}
+
+<h1>Great Dogs</h1>
+
+<table>
+   <tr>
+       <td>Id</td>
+       <td>Breed</td>
+       <td>Name</td>
+       <td>Age</td>
+    </tr>
+
+    {% for dog in dogs %}
+        <tr>
+            <td>
+                {{ dog.id }}
+            </td>
+            <td>
+                {{ dog.name }}
+            </td>
+            <td>
+                {{ dog.breed }}
+            </td>
+            <td>
+                {{ dog.age }}
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

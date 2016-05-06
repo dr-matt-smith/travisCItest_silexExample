@@ -10,6 +10,7 @@ use Itb\Utility\ControllerUtility;
 
 
 $app->get('/',          ControllerUtility::controller('Itb\Controller', 'main/index'));
+$app->get('/sqlite',          ControllerUtility::controller('Itb\Controller', 'main/sqlite'));
 $app->get('/list',      ControllerUtility::controller('Itb\Controller', 'main/list'));
 $app->get('/show/{id}', ControllerUtility::controller('Itb\Controller', 'main/show'));
 $app->get('/show',      ControllerUtility::controller('Itb\Controller', 'main/showMissingIsbn'));
